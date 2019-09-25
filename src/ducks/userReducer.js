@@ -18,17 +18,9 @@ export function requestUserData() {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_USER_DATA + "_PENDING":
-      return {...state, loading: "Loading..."};
-    case REQUEST_USER_DATA + "_REJECTED":
-      return {...state};
     case REQUEST_USER_DATA + "_FULFILLED":
-      return {
-        ...state,
-        email: action.payload.email,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName
-      };
+      const {email, firstName, lastName} = action.payload.user;
+      return {email, firstName, lastName};
     default:
       return state;
   }
